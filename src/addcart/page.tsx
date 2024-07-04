@@ -1,4 +1,6 @@
 "use client";
+import Products from "@/app/product/page";
+import Link from "next/link";
 import React, { useState } from "react";
 
 export default function addcart() {
@@ -194,6 +196,11 @@ export default function addcart() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="container">
+        <Link href={"/"}>
+          <Products></Products>
+        </Link>
       </div>
     </section>
   );

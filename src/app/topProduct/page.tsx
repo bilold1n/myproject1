@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function topProducts() {
@@ -37,22 +38,24 @@ export default function topProducts() {
         <h1 className="w-full text-center text-5xl my-[72px]">TOP SELLING</h1>
         <div className="mygrid">
           {data.map(({ name, rating, price, image }) => (
-            <div className="card card-compact bg-base-100 w-[280px] shadow-xl">
-              <figure>
-                <img
-                  className="w-[295px] h-[300px]"
-                  src={image}
-                  alt="Shoes"
-                  width={295}
-                  height={300}
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="text-sm">{name}</h2>
-                <p>{rating}/5</p>
-                <p>${price}</p>
+            <Link href={`/topProduct/${name}`} key={name}>
+              <div className="card card-compact bg-base-100 w-[280px] shadow-xl">
+                <figure>
+                  <img
+                    className="w-[295px] h-[300px]"
+                    src={image}
+                    alt="Shoes"
+                    width={295}
+                    height={300}
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="text-sm">{name}</h2>
+                  <p>{rating}/5</p>
+                  <p>${price}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="flex item-center justify-between w-full mx-auto mt-[35px] mb-[64px]">
