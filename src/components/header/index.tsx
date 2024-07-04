@@ -9,7 +9,7 @@ const Header = () => {
       const storedTheme = localStorage.getItem("theme");
       if (storedTheme) {
         setTheme(storedTheme);
-        document
+       window.document
           .getElementById("datatheme")
           .setAttribute("data-theme", storedTheme);
       }
