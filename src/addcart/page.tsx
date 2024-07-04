@@ -28,7 +28,7 @@ export default function addcart() {
             <img
               className="w-[145px] h-[100px] rounded-xl "
               width={155}
-              height={100}
+              height={150}
               src="https://s3-alpha-sig.figma.com/img/51c4/5a78/b417beff6f8fa6310534f3755fd23c5a?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HygkpS2ut-6re7xsSlK3BlAXia6u3K7A-KFdzd6RJadG6dYInNoNpPx4XE8FZar~hZynpDRYmaKa~DbzJcdsVPHeMqfeiJfXNasV-Mm4pmyb2DB-Yqpzx4Dg2VhTCgp1c47~X7XTVlV7Je1bNayDUvmxvh6kK-NTjmxhiSvKjjmW0UrN0lralE6oYdd76XuIbMODI21nuavJBjKRkhJwRQcko0YHaaxb~YpUBQTQKUT-Zfut7nOBTv0LGpz0Px7MvksaD7EGwdfQtVxUhtX~0Eihl0lRy~Jn-BWq8exBBKzauIVmMSE9mAqHk-fLgoyMKDLtbBDnhkYTmXrNQWEdKA__"
               alt=""
               onClick={() =>
