@@ -126,7 +126,9 @@ export default function addcart() {
                 width: "50px",
                 height: "50px",
               }}
-            ></span>
+            >
+              {" "}
+            </span>
           </div>
           <hr />
           <p>Choose Size</p>
@@ -184,7 +186,10 @@ export default function addcart() {
                 -
               </button>
             </div>
-            <button style={{ width: "400px" }} className="btn bg-black ">
+            <button
+              style={{ width: "400px" }}
+              className="btn bg-black text-white "
+            >
               Add to cart
             </button>
           </div>
