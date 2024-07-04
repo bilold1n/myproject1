@@ -1,4 +1,3 @@
-import Header from "@/components/header";
 import Products from "./product/page";
 import TopProducts from "./topProduct/page";
 export default function Home() {
@@ -58,7 +57,7 @@ export default function Home() {
           <img src="prada.png" alt="rasm" />
         </div>
       </section>
-      <Products />
+      <Products data7={"NEW ARRIVALS"} />
       <TopProducts />
       <section>
         <div className="container bg-base-200 rounded-[20px] py-9">
