@@ -9,16 +9,14 @@ const Header = () => {
       const storedTheme = localStorage.getItem("theme");
       if (storedTheme) {
         setTheme(storedTheme);
-       window.document
-          .getElementById("datatheme")
-          .setAttribute("data-theme", storedTheme);
+       window.document.documentElement.setAttribute("data-theme", storedTheme);
       }
     }, []);
 
     const toggleTheme = () => {
       const newTheme = theme === "light" ? "dark" : "light";
       setTheme(newTheme);
-      localStorage.setItem("theme", newTheme);
+      window.localStorage.setItem("theme", newTheme);
       document.documentElement.setAttribute("data-theme", newTheme);
     };
 
