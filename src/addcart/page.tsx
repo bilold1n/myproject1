@@ -6,11 +6,9 @@ import React, { useState } from "react";
 export default function addcart() {
   const [url, seturl] = useState("/image 1.png");
   const [count, setCount] = useState<number>(1);
-
   const increment = () => {
     setCount(count + 1);
   };
-
   const decrement = () => {
     setCount(count - 1);
   };
