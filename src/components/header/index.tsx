@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Header = () => {
@@ -29,6 +30,14 @@ const Header = () => {
 
   return (
     <div>
+      <div className="w-full bg-black py-2 text-center">
+        <div className="container flex items-center justify-center text-white text-center w-full">
+          <p>Sign up and get 20% off to your first order. </p>
+          <Link className="text-white underline ml-1" href={""}>
+            Sign Up Now
+          </Link>
+        </div>
+      </div>
       <div className="navbar ">
         <div className="container navbar">
           <div className="flex-1">
