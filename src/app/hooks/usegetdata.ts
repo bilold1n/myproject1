@@ -26,7 +26,6 @@ export default function useGetData(collectionName: string, fresh: boolean) {
           collection(db, collectionName)
         );
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
           documents.push({ id: doc.id, ...doc.data() });
         });
         setData(documents);
