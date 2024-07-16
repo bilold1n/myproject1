@@ -33,7 +33,7 @@ const Header = () => {
       <div className="w-full bg-black py-2 text-center">
         <div className="container flex items-center justify-center text-white text-center w-full">
           <p>Sign up and get 20% off to your first order. </p>
-          <Link className="text-white underline ml-1" href={""}>
+          <Link className="text-white underline ml-1" href={"/signup"}>
             Sign Up Now
           </Link>
         </div>
