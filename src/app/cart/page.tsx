@@ -1,6 +1,6 @@
 "use client";
 import useGetData from "@/app/hooks/usegetdata";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Cart() {
   const { data } = useGetData("cart", false);
