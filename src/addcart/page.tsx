@@ -1,12 +1,17 @@
 "use client";
+import { useEffect } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../firebase/config";
+import useGetData from "@/app/hooks/usegetdata";
 
-export default function AddCart({ data }: any) {
-  const [url, setUrl] = useState(data.image[0]);
+export default function AddCart({ data7, id }: any) {
+  const [url, setUrl] = useState(data7?.image[0]);
   const [count, setCount] = useState<number>(1);
-  const [selectedSize, setSelectedSize] = useState<string>(data.size[0]);
+  const [selectedSize, setSelectedSize] = useState<string>(data7?.size[0]);
+  const { data: usedata } = useGetData("cart", false);
+  console.log(id);
+  const instruct = usedata;
 
   const increment = () => {
     setCount(count + 1);
@@ -16,19 +21,30 @@ export default function AddCart({ data }: any) {
     setCount(count - 1);
   };
 
-  const addToCart = () => {
+  const addToCart = async () => {
     const cartItem = {
-      color: data.color,
+      id, // Mahsulotni aniqlash uchun ID ni qo'shamiz
+      color: data7.color,
       size: selectedSize,
       count: count,
     };
+
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
     if (user && user.uid) {
-      setDoc(doc(db, "cart", user.uid), cartItem);
-      console.log("Adding to cart:", cartItem);
+      // Yangi mahsulot instruct massivida mavjudligini tekshiramiz
+      const isItemInCart = instruct.some((item: any) => item.id === id);
+
+      if (!isItemInCart) {
+        instruct.push({ [id]: cartItem });
+        await setDoc(doc(db, "cart", user.uid), { instruct });
+
+        alert("Item added to cart.");
+      } else {
+        alert("Item is already in the cart.");
+      }
     } else {
-      console.log("User not logged in, cannot add to cart.");
+      alert("User not logged in, cannot add to cart.");
     }
   };
 
@@ -37,7 +53,7 @@ export default function AddCart({ data }: any) {
       <div className="container flex justify-between">
         <div className="flex gap-4">
           <div className="flex flex-col gap-2">
-            {data.image.map((image: string, index: number) => (
+            {data7.image.map((image: string, index: number) => (
               <img
                 key={index}
                 style={{
@@ -72,26 +88,25 @@ export default function AddCart({ data }: any) {
           </div>
         </div>
         <div className="flex flex-col" style={{ width: "630px", gap: "14px" }}>
-          <h2 className="text-4xl">{data.title}</h2>
-          <p>{data.rating}/5</p>
+          <h2 className="text-4xl">{data7.title}</h2>
+          <p>{data7.rating}/5</p>
           <div className="flex w-5 gap-2 items-center">
-            <h2 className="font-bold text-xl">${data.price}</h2>
+            <h2 className="font-bold text-xl">${data7.price}</h2>
             <h2 className="font-bold text-xl text-[#c0bebc86] line-through">
-              ${Number(data.price) + Number(data.price) * 0.3}
+              ${Number(data7.price) + Number(data7.price) * 0.3}
             </h2>
             <p className="text-[#d82c2c] bg-[#ca3a3a61] rounded-full p-1 text-sm">
               -30%
             </p>
           </div>
-          <p className="w-[300px]">{data.description}</p>
+          <p className="w-[300px]">{data7.description}</p>
           <hr />
           <div>
             <p>Select Colors</p>
-
             <span
               style={{
                 borderRadius: "50%",
-                background: data.color,
+                background: data7.color,
                 width: "30px",
                 height: "30px",
                 display: "inline-block",
@@ -103,7 +118,7 @@ export default function AddCart({ data }: any) {
           <hr />
           <p>Choose Size</p>
           <div className="join gap-3">
-            {data.size.map((size: string, index: number) => (
+            {data7.size.map((size: string, index: number) => (
               <label key={index}>
                 <input
                   className="join-item btn"

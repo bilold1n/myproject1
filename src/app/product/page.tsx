@@ -5,6 +5,7 @@ import useGetData from "../hooks/usegetdata";
 
 export default function Products({ data7 }: any) {
   const { data } = useGetData("products", false);
+  console.log(data);
 
   return (
     <section>

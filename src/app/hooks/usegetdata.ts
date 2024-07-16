@@ -26,7 +26,9 @@ export default function useGetData(collectionName: string, fresh: boolean) {
           collection(db, collectionName)
         );
         querySnapshot.forEach((doc) => {
-          documents.push({ id: doc.id, ...doc.data() });
+          collectionName === "cart"
+            ? documents.push(doc.data())
+            : documents.push({ id: doc.id, ...doc.data() });
         });
         setData(documents);
       } catch (error: any) {

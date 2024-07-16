@@ -17,7 +17,7 @@ export default async function product({ params }: any) {
   console.log(params?.id);
   return (
     <section>
-      <Addcart data={docSnap.data()}></Addcart>
+      <Addcart data7={docSnap.data()}></Addcart>
     </section>
   );
 }
