@@ -47,7 +47,37 @@ export default function AddCart({ data7, id }: any) {
       alert("User not logged in, cannot add to cart.");
     }
   };
-
+  const renderStars = (rating: number) => {
+    return [...Array(5)].map((_, index) => {
+      const starValue = index + 0.5;
+      return (
+        <div key={index} className="relative">
+          <svg
+            className="w-4 h-4 fill-current text-gray-300"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M10 15l-5.878 3.09 1.122-6.545L0 7.545l6.561-.954L10 1l2.439 5.591L19 7.545l-5.244 4.999 1.122 6.545z" />
+          </svg>
+          <svg
+            className="w-4 h-4 fill-current text-yellow-500 absolute top-0 left-0"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            style={{
+              clipPath:
+                rating >= index + 1
+                  ? "none"
+                  : rating > index
+                  ? "inset(0 50% 0 0)"
+                  : "inset(0 0 0 100%)",
+            }}
+          >
+            <path d="M10 15l-5.878 3.09 1.122-6.545L0 7.545l6.561-.954L10 1l2.439 5.591L19 7.545l-5.244 4.999 1.122 6.545z" />
+          </svg>
+        </div>
+      );
+    });
+  };
   return (
     <section className="mb-[55px]" style={{ marginBottom: "55px" }}>
       <div className="container flex justify-between">
@@ -89,7 +119,17 @@ export default function AddCart({ data7, id }: any) {
         </div>
         <div className="flex flex-col" style={{ width: "630px", gap: "14px" }}>
           <h2 className="text-4xl">{data7.title}</h2>
-          <p>{data7.rating}/5</p>
+          <div className="text-yellow-500 mb-2">
+            <div className="flex justify-start items-center">
+              {renderStars(data7.rating)}
+              <span className="text-sm text-gray-500 ml-2">
+                {typeof data7.rating === "number"
+                  ? data7.rating.toFixed(1)
+                  : data7.rating}
+                /5
+              </span>
+            </div>
+          </div>
           <div className="flex w-5 gap-2 items-center">
             <h2 className="font-bold text-xl">${data7.price}</h2>
             <h2 className="font-bold text-xl text-[#c0bebc86] line-through">
