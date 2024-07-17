@@ -1,19 +1,27 @@
 "use client";
+import { getDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { db } from "../../firebase/config";
-import useGetData from "@/app/hooks/usegetdata";
-
 export default function AddCart({ data7, id }: any) {
   const [url, setUrl] = useState(data7?.image[0]);
   const [count, setCount] = useState<number>(1);
   const [selectedSize, setSelectedSize] = useState<string>(data7?.size[0]);
-  const { data: usedata } = useGetData("cart", false);
+  const [usedata, setUsedata] = useState<any>({});
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  useEffect(() => {
+    const docRef = doc(db, "cart", user.uid);
+    getDoc(docRef).then((docSnap) => {
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        setUsedata({ ...docSnap.data() });
+      } else {
+        console.log("No such document!");
+      }
+    });
+  }, []);
   console.log(id);
-  console.log(usedata);
-  const instruct = usedata;
-
   const increment = () => {
     setCount(count + 1);
   };
@@ -28,21 +36,11 @@ export default function AddCart({ data7, id }: any) {
       size: selectedSize,
       count: count,
     };
-
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-
     if (user && user.uid) {
-      // Yangi mahsulot instruct massivida mavjudligini tekshiramiz
-      const isItemInCart = instruct.some((item: any) => item.id === id);
-
-      if (!isItemInCart) {
-        instruct.push({ [id]: cartItem });
-        await setDoc(doc(db, "cart", user.uid), { instruct });
-
-        alert("Item added to cart.");
-      } else {
-        alert("Item is already in the cart.");
-      }
+      usedata[`${id}`] = { ...cartItem };
+      console.log(usedata);
+      setDoc(doc(db, "cart", user.uid), { ...usedata });
+      alert("Item added to cart.");
     } else {
       alert("User not logged in, cannot add to cart.");
     }

@@ -5,6 +5,7 @@ import {
   getDocs,
   DocumentData,
   QuerySnapshot,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "../../../firebase/config";
 
