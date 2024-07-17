@@ -11,6 +11,7 @@ export default function AddCart({ data7, id }: any) {
   const [selectedSize, setSelectedSize] = useState<string>(data7?.size[0]);
   const { data: usedata } = useGetData("cart", false);
   console.log(id);
+  console.log(usedata);
   const instruct = usedata;
 
   const increment = () => {
@@ -23,7 +24,6 @@ export default function AddCart({ data7, id }: any) {
 
   const addToCart = async () => {
     const cartItem = {
-      id, // Mahsulotni aniqlash uchun ID ni qo'shamiz
       color: data7.color,
       size: selectedSize,
       count: count,

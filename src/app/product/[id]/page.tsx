@@ -6,6 +6,7 @@ export default async function product({ params }: any) {
   console.log(params?.id);
   const docRef = doc(db, "products", params?.id);
   const docSnap = await getDoc(docRef);
+  console.log(params?.id);
 
   console.log(docSnap.data());
   if (docSnap.exists()) {

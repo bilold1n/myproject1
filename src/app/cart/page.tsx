@@ -4,8 +4,7 @@ import React from "react";
 
 export default function Cart() {
   const { data } = useGetData("cart", false);
-  // console.log("data", Object.keys(data[0]));
-
-  console.log(data);
+  const data7: any = data[0]?.instruct;
+  // console.log("data", Object.keys(data7));
   return <div>Cart</div>;
 }
