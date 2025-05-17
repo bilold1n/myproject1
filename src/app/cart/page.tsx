@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import useGetData from "@/app/hooks/usegetdata";
 import React from "react";
 
