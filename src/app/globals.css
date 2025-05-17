@@ -7,9 +7,12 @@
   }
   html {
     @apply h-full scroll-smooth;
+    @apply h-full scroll-smooth;
+    @apply h-full scroll-smooth;
   }
   body {
     @apply h-full flex flex-col;
+    @apply h-full scroll-smooth;
   }
   main {
     @apply flex-grow;
